@@ -1,0 +1,537 @@
+{% extends 'layout_main.html' %}
+
+{% load static %}
+
+{% block title %} The Healthy Teacher - Edit Profile {% endblock %}
+
+{% block content %}
+
+{% include 'navbarGlobal.html' %}
+
+<style>
+
+
+.before-image {
+    height: 150px;
+    width: 150px;
+    transition: .2s linear;
+}
+
+.before-image:hover {
+    height: 160px;
+    width: 160px;
+ }
+
+</style>
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+      <!-- Card Area -->
+      <div class="col-xl-8 col-lg-7 mx-auto">
+        <div class="card shadow mb-4">
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="tab row">
+              <div class="tablinks mr-sm-3"><button class="m-0 font-weight-bold text-primary" onclick="openProfileTab(event, '{{ tabs.0 }}')" {% if tabs.0 == currentTab %} id = 'defaultOpen' {% endif %}>Profile</button></div>
+              <div class="tablinks mr-sm-3"><button class="m-0 font-weight-bold text-primary" onclick="openProfileTab(event, '{{ tabs.1 }}')" {% if tabs.1 == currentTab %} id = 'defaultOpen' {% endif %}>Health Information</button></div>
+              <div class="tablinks"><button class="m-0 font-weight-bold text-primary" onclick="openProfileTab(event, '{{ tabs.2 }}')" {% if tabs.2 == currentTab %} id = 'defaultOpen' {% endif %}>Macros</button></div>
+            </div>
+          </div>
+          <!-- Card Body -->
+
+          <!-- Tab Profile -->
+          <div class="card-body">
+
+            <div class="row">
+
+              <div class="col-md-5 order-md-12 mt-3">
+                  
+                <div class="col text-center mb-5">
+                  <div class="form-group">
+                    <label>District</label>
+                    <div class="mt-3 form-label-group">
+                      <h2>{{ district }}</h2>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                {% load static %}
+                {% static 'img/Profile-icon-9.png' as profile_icon %}
+                {% static 'img/Profile-icon-9.png' as profile_icon %}
+                {% static 'img/Profile-icon-9.png' as profile_icon %}
+
+                <div class="col text-center">
+                  <div class="form-group text-center mt-5 wrap">
+                    <div class="form-label-group mt-3 mx-auto circle" style="border-color: {{ color }}; background: center url(
+                      {% if profile_picture != 'None' %}
+                        {{ profile_picture }}
+                      {% else %}
+                        {{ profile_icon }}
+                      {% endif %}
+                      ); background-size: cover">
+                      
+                      <!-- <h4 style="margin:0; position:absolute; top:40%; left:50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); color: {{ color }}">Team</h4> -->
+                      <!-- <h4 style="margin:0; position:absolute; top:60%; left:50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); color: {{ color }}">{{ team }}</h4> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col row text-center">
+                  <div class="form-group text-center mt-5 wrap mt-3 mx-auto">
+                    <div class="before-image" style="border-color: {{ color }}; background: center url(
+                      {% if image_before != 'None' %}
+                        {{ image_before }}
+                      {% else %}
+                        {{ profile_icon }}
+                      {% endif %}
+                      ); background-size: cover">
+                      
+                      
+                    </div>
+
+                    <label>Before</label>
+
+
+                  </div>
+
+
+                  <div class="form-group text-center mt-5 wrap mt-3 mx-auto">
+                    
+                    <div class="before-image" style="border-color: {{ color }}; background: center url(
+                      {% if image_current != 'None' %}
+                        {{ image_current }}
+                      {% else %}
+                        {{ profile_icon }}
+                      {% endif %}
+                      ); background-size: cover">
+                      
+                      
+                    </div>
+
+                    <label>Current</label>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div id="Profile" class="tabcontent col-md-7 order-1">
+            
+                <!-- Form -->
+                <form enctype="multipart/form-data" id="profileForm" class="user" method="post">
+                  {% csrf_token %}
+                  
+                  <input type="hidden" name="formtab" id="id_formtab" value="profile">
+
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-10">
+                        <label>Profile Picture</label>
+                        <div class="form-label-group">
+                          <input type="file" name="profilePicture" id="id_profilePicture" class="form-control-file" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-10">
+                        <label>Username</label>
+                        <div class="form-label-group">
+                          <input type="text" name="username" id="id_username" class="form-control" value="{{ username }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-10">
+                        <label>First Name</label>
+                        <div class="form-label-group">
+                          <input type="text" name="first_name" id="id_first_name" class="form-control" value="{{ first_name }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-10">
+                        <label>Last Name</label>
+                        <div class="form-label-group">
+                          <input type="text" name="last_name" id="id_last_name" class="form-control" value="{{ last_name }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-10">
+                        <label>Email</label>
+                        <div class="form-label-group">
+                          <input type="email" name="email" id="id_email" class="form-control" value="{{ email }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="form-group">
+                      <a href="/accounts/profile/change-password" class="ml-2">Change password</a>
+                  </div>
+                  
+                  {% if isIndependent %}
+
+                    <div class="form-group">
+                        <a href="https://www.paypal.com/myaccount/autopay/" class="ml-2">Cancel Subscription</a>
+                    </div>
+
+                  {% endif %}
+
+                  <button type="submit" class="btn btn-primary btn-user btn-block col-md-5 mt-3 btn-custom-primary">
+                    Save
+                  </button>
+                </form>
+                <!-- End form -->
+                
+                {% if form.errors %}
+                    {% for error in form.errors %}
+                    <div class="text-danger">
+                          {{ error }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+              </div>
+
+              <!-- Tab Health Info -->
+
+              <div id="HealthInfo" class="tabcontent col-md-7 order-1">
+            
+                <!-- Form -->
+                <form enctype="multipart/form-data" class="user" method="post">
+                  {% csrf_token %}
+                  
+                  <input type="hidden" name="formtab" id="id_formtab" value="healthinfo">
+
+                  <div class="form-group mb-sm-5">
+                    <div class="form-row">
+                      <div class="col-md-4 mb-sm-0 mb-3 profileform">
+                        <label>Birth Gender</label>
+                        <div class="form-label-group">
+                          <select class="form-control" name="gender" required id="id_gender" selected="{{ gender }}">
+                            {% for option in genderOptions %}
+        
+                              {% if option == gender %}
+
+                                <option value="{{ option }}" selected="selected">{{ option }}</option>
+                            
+                              {% else %}
+
+                                <option value="{{ option }}">{{ option }}</option>
+
+                              {% endif %}
+        
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-5 profileform">
+                        <label>Birthday</label>
+                        <div class="form-label-group">
+                          <input style="color: {{ color }};" type="date" name="birthday" id="id_birthday" class="form-control" value="{{ birthday }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-sm-5 profileform">
+                    <div class="form-row">
+                      <div class="col-md-3">
+                        <label>Weight</label>
+                        <div class="form-label-group mb-sm-0 mb-3">
+                          <input style="color: {{ color }};" type="number" name="weight" id="id_weight" step="0.1"  class="form-control" value="{{ weight }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <label>Height</label>
+                        <div class="form-label-group mb-sm-0 mb-3">
+                          <input style="color: {{ color }};" type="number" name="height" id="id_height" step="0.1" class="form-control" value="{{ height }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Cholesterol</label>
+                        <div class="form-label-group">
+                          <input style="color: {{ color }};" type="number" name="cholesterol" id="id_cholesterol" step="0.1" class="form-control" value="{{ cholesterol }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-sm-5">
+                    
+                    <div class="col-md-6 mb-sm-0 mb-3 profileform">
+                      <label>Blood Pressure</label>
+
+                      <div class="form-row">
+                        <div class="form-label-group col-6">
+                          <input style="color: {{ color }};" type="number" name="sysBloodPressure" id="id_sysBloodPressure" step="0.1" class="form-control" value="{{ sysBloodPressure }}" required="required" autofocus="autofocus">
+                        </div>
+                        <h3>/</h3>
+                        <div class="form-label-group col-5">
+                          <input style="color: {{ color }};" type="number" name="diasBloodPressure" id="id_diasBloodPressure" step="0.1" class="form-control" value="{{ diasBloodPressure }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-sm-5">
+                    <div class="form-row">
+                      <div class="col-md-4 mb-sm-0 mb-3 profileform">
+                        <label>Waist Size</label>
+                        <div class="form-label-group">
+                          <input style="color: {{ color }};" type="number" name="waistsize" id="id_waistsize" step="0.1" class="form-control" value="{{ waistsize }}" required="required" autofocus="autofocus">
+                        </div>
+                      </div>
+                      <div class="col-md-3 mb-sm-0 mb-3 profileform">
+                        <label>Diabetic</label>
+                        <div class="form-label-group">
+                          <select class="form-control" name="isDiabetic" required id="id_isDiabetic" value="{{ isDiabetic }}">
+                            {% for option in closedOptions %}
+        
+                              {% if option == isDiabetic %}
+
+                                <option value="{{ option }}" selected="selected">{{ option }}</option>
+                          
+                              {% else %}
+
+                                <option value="{{ option }}">{{ option }}</option>
+
+                              {% endif %}
+        
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3 mb-sm-0 mb-3 profileform">
+                        <label>Prediabetic</label>
+                        <div class="form-label-group">
+                          <select class="form-control" name="isPrediabetic" required id="id_isPrediabetic" value="{{ isPrediabetic }}">
+                            {% for option in closedOptions %}
+        
+                              {% if option == isPrediabetic %}
+
+                                <option value="{{ option }}" selected="selected">{{ option }}</option>
+                          
+                              {% else %}
+
+                                <option value="{{ option }}">{{ option }}</option>
+
+                              {% endif %}
+        
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                  <div class="form-group mb-3">
+                    <div class="form-row">
+                      <div class="col-md-5">
+                        <label class="small">Before Picture</label>
+                        <div class="form-label-group">
+                          <input type="file" name="beforePicture" id="id_beforePicture" class="form-control-file" autofocus="autofocus">
+                        </div>
+                      </div>
+
+                      <div class="col-md-5">
+                        <label class="small">Current Picture</label>
+                        <div class="form-label-group">
+                          <input type="file" name="currentPicture" id="id_currentPicture" class="form-control-file" autofocus="autofocus">
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-user btn-block col-md-5 mt-3 btn-custom-primary">
+                    Save
+                  </button>
+
+                  {{ formHealth.errors }}
+                {{ formHealth.non_field_errors }}
+                
+                {% for error in formHealth.errors %}
+                <div class="text-danger">
+                      {{ error }}
+                </div>
+                {% endfor %}
+
+                </form>
+                <!-- End form -->
+                
+                
+                
+
+              </div>
+
+              <!-- Tab Macros Info -->
+
+              <div id="Macros" class="tabcontent col-md-7 order-1">
+
+                {% if isKeto == True %}
+
+                  <p>Your macros may need some adjusting. Your coach will be in touch with you to discuss your macros within 48 hours. </p>
+
+                {% endif %}
+            
+                <!-- Form -->
+                <form class="user" method="post">
+                  {% csrf_token %}
+                  
+                  <input type="hidden" name="formtab" id="id_formtab" value="macros">
+
+                  <div class="form-group mb-sm-3">
+                    <div class="form-row">
+                      <div class="col-lg-10">
+                        
+                        <label>Acitivty level</label>
+                        <div class="form-label-group">
+                          <select class="form-control form-circled-field" name="activityLevel" required id="id_activityLevel" selected="{{ activityLevel }}">
+                            {% for option in activityOptions %}
+
+                              {% if option.0 == activityLevel %}
+        
+                                <option value="{{ option.0 }}" selected="selected">{{ option.1 }}</option>
+
+                              {% endif %}
+        
+                            {% endfor %}
+                            {% if activityLevel != 'S' %}
+                            <option value="S" title="Choose this if you workout between 1 and 2 times a week, find yourself moving slowly around the classroom, and are mostly seated throughout the day.">Sedentary</option> 
+                            {% endif %}
+                            {% if activityLevel != 'LA' %}
+                            <option value="LA" title="Choose this if you workout between 2 and 3 times a week and find yourself getting around 5-12K steps a day.">Light Active</option>
+                            {% endif %}
+
+                            {% if activityLevel != 'MA' %}
+                            <option value="MA" title="Choose this if you workout between 4 and 5 times a week and find yourself getting around 12-20K steps a day.">Moderately Active</option>
+                            {% endif %}
+
+                            {% if activityLevel != 'A' %}
+                            <option value="A" title="Choose this if you workout 2 times a day and find yourself getting around 15-20K daily steps while also participating in a sport.">Active</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-sm-3">
+                    <div class="form-row">
+                      <div class="col-lg-10">
+                        <label>Goal</label>
+                        <div class="form-label-group">
+                          <select class="form-control form-circled-field" name="goal" required id="id_goal" selected="{{ goal }}">
+                            {% for option in goalOptions %}
+
+                              {% if option.0 == goal %}
+        
+                                <option value="{{ option.0 }}" selected="selected">{{ option.1 }}</option>
+
+                              {% else %}
+
+                                <option value="{{ option.0 }}">{{ option.1 }}</option>
+
+                              {% endif %}
+      
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 row mb-3">
+
+                    <div class="col-sm-6 profileform">
+                      
+                      <p class="mt-3" style="color: {{ color }};">{{ totalDailyEnergyExp|floatformat:1 }} cal</p>
+                      <div>Total Daily Energy Expenditure</div>
+                    </div>
+
+                    <div class="col-sm-6 profileform">
+                      
+                      <p class="mt-3" style="color: {{ color }};">{{ energyConsumption|floatformat:1 }} cal</p>
+                      <div>You must consume</div>
+                    </div>
+                  
+                  </div>
+
+                  <div class="col-12 row mb-5">
+
+                      <div class="col-sm-4 profileform">
+                        
+                        <p class="mt-3" style="color: {{ color }};">{{ proteins|floatformat:1 }} g</p>
+                        <div>Proteins</div>
+                      </div>
+  
+                      <div class="col-sm-4 profileform">
+                        
+                        <p class="mt-3" style="color: {{ color }};">{{ carbs|floatformat:1 }} g</p>
+                        <div>Carbs</div>
+                      </div>
+
+                      <div class="col-sm-4 profileform">
+                        
+                        <p class="mt-3" style="color: {{ color }};">{{ fats|floatformat:1 }} g</p>
+                        <div>Fats</div>
+                      </div>
+                    
+                    </div>
+
+                  <button type="submit" class="btn btn-primary btn-user btn-block col-md-5 mt-3 btn-custom-primary">
+                    Save
+                  </button>
+                </form>
+                <!-- End form -->
+                
+                {% if formMacros.errors %}
+                    {% for error in formMacros.errors %}
+                    <div class="text-danger">
+                          {{ error }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  {% include 'footerGlobal.html' %}
+
+</div>
+<!-- End of Content Wrapper -->
+
+{% endblock %}
+
+{% block script %} <script src="{% static 'js/main.js' %}"></script> {% endblock %}
+
+

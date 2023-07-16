@@ -1,0 +1,1 @@
+from .safestring import safeVideo

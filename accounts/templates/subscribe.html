@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %} The Healthy Teacher - Subscribe {% endblock %}
+
+{% block content %}
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-5 d-none d-lg-block bg-3"></div>
+        <div class="col-lg-7 py-5">
+          <div class="p-5">
+            <div class="text-center py-4">
+              <h1 class="h4 text-gray-900 mb-4">{{ welcome }}</h1>
+              <h1 class="h4 text-gray-900 mb-4">Subscribe to The Healthy Teacher</h1>
+            </div>
+            <form class="user" method="post">
+              {% csrf_token %}
+              <div class="form-group row">
+                
+
+                
+                <div class="col mb-3 mb-sm-0">
+                  <select class="form-control" name="order" required id="id_order">
+                    {% for option in options %}
+
+                      <option value="{{ option.id }}">{{ option }}</option>
+
+                    {% endfor %}
+                  </select>
+                  
+                </div>
+
+              </div>
+
+              <br>
+            </form>
+
+            <div id='pay' class="text-center"></div>
+
+            {% if form.errors %}
+              
+              <div class="text-danger">
+                
+                {% for error in form.non_field_errors %}
+                  
+                  {{error}}
+                
+                {% endfor %}
+                    
+              </div>
+              <hr>
+        
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a class="small" href="{% url 'logout' %}">Login with a different account</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block custom_scripts %}
+
+  <script src="{% static 'js/subscribe.js' %}"></script>
+
+{% endblock %}

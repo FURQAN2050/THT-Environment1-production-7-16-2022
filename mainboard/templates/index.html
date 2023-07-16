@@ -1,0 +1,311 @@
+{% extends 'layout_main.html' %}
+
+{% load static %}
+
+{% block title %} The Healthy Teacher - Main Board {% endblock %}
+
+{% block content %}
+
+{% include 'navbarGlobal.html' %}
+
+<script>
+    logo = '{% static "img/thehealthyteacher_layover.jpg" %}'
+    video = '{% static "img/Adobe_XD_2019-08-19_16-16-28_mBFaK37.mp4" %}'
+</script>
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+     <!-- Main Content -->
+    <div id="content">
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid px-0 px-sm-4">
+
+            <!-- Card Area -->
+            <div class="col-xl-11 col-md-12 col-sm-12 mx-auto">
+                
+                <div class="card shadow mb-4" style="background-color: #383838">
+                    
+                    <div class="row">
+                     
+                        <!-- Questions Section -->
+                        <div class="col-lg-6 mt-4 ml-sm-3">
+
+                            
+                            
+                            <!-- Informational area -->
+                            <div class="row">
+
+                                <!-- Ring -->
+                                <div class="col-12 col-md-4 order-md-12">
+                                    <!-- <div id="ring" class="col-12 mx-auto"></div> -->
+
+                                    <svg class="ring d-block mx-auto" height="120" width="120">
+
+                                        <circle class="ring__background" stroke="#eee" stroke-width="14" fill="transparent" r="46" cx="60" cy="60" />
+                                        <circle class="ring__circle" stroke="#7ef014" stroke-width="14" fill="transparent" r="46" cx="60" cy="60" />
+        
+                                    </svg>
+                                </div>
+
+                                <!-- Points -->
+                                <div class="col-12 col-md-8 m-0 mt-4 order-1 row" style="color: white">
+                                    
+                                    <div class="col-4 text-center">
+                                        <div id="me" class="points-display pb-2"> 0 </div>
+                                        <p class="small">Me</p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div id="team" class="points-display pb-2"> 0 </div>
+                                        <p class="small">My Team</p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div id="district" class="points-display pb-2"> 0 </div>
+                                        <p class="small">My District</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Tabs -->
+                            <div class="col-12 py-3 d-flex flex-row px-0">
+                                <div class="col-sm-8 col-12 tab row mx-auto">
+
+                                    <div class="mx-auto m-sm-0 row">
+
+                                        <!-- ADD OPTION TO EDIT PAST QUESTIONS -->
+                                    
+                                        <!--
+
+                                        <div class="tablinks mr-5">
+                                            <button id="defaultOpen" class="m-0 font-weight-bold text-primary" onclick="openTab(event, 'Today', 'tabcontent', 'tablinks')">Today</button>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="tablinks">
+                                            <button class="m-0 font-weight-bold text-primary" onclick="openTab(event, 'Past', 'tabcontent', 'tablinks')">Past</button>
+                                        </div>
+                                        -->
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+
+                            <!-- Questions -->
+
+
+                            <div id="Today" class="col-12 py-3 questions px-0">
+
+                                {% for question, date in data %}
+
+                                    <!-- Only display 10 questions -->
+
+                                    {% if forloop.counter < 10 %}
+                            
+                                        <div id="{{ question.id }}" class="col-12 py-3 d-flex flex-row px-0">
+                                            <div class="col-8" style="color: white">
+                                                {{ question }}
+                                            </div>
+                                            <div class="col-4 d-inline-flex mx-auto">
+                                                <div class="question row d-inline-flex mx-auto">
+                                                    <div class="button-links mr-3">
+                                                        <button class="questions-yes yes" onclick="questionsButtonsListener(event, '{{ question.id }}', '{{ date }}', 'yes')"></button>
+                                                        
+                                                    </div>
+                                                    <div class="button-links">
+                                                        <button class="questions-no no" onclick="questionsButtonsListener(event, '{{ question.id }}', '{{ date }}', 'no')"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+                            
+
+                            <div id="Past" class="col-12 py-3 questions px-0 tabcontent">
+
+                            </div>
+
+                        </div>
+                        
+                        <!-- Graph Section -->
+                        <div class="col-lg-5 mt-lg-4 px-5 px-lg-0">
+
+                            <!-- Tabs -->
+                            <div class="col-12 py-4 mt-3 d-flex flex-row px-0">
+                                <div class="mx-auto tab row">
+
+                                    <div class="row">
+                                    
+                                        <div class="tablinksGraph mr-2">
+                                            <button id="defaultOpenGraph" class="m-0 text-primary small" onclick="openTab(event, 'Daily', 'tabcontentGraph', 'tablinksGraph')">Daily</button>
+                                        </div>
+                                        
+                                        <div class="tablinksGraph mr-2">
+                                            <button class="m-0 text-primary small" onclick="openTab(event, 'Points', 'tabcontentGraph', 'tablinksGraph')">Points</button>
+                                        </div>
+                                        
+                                        <!-- ADD TEAM AND DISTRICT GRAPHS -->
+
+                                        <!-- 
+
+                                        <div class="tablinksGraph mr-2">
+                                            <button class="m-0 text-primary small" onclick="openTab(event, 'Team', 'tabcontentGraph', 'tablinksGraph')">Team</button>
+                                        </div>
+
+                                        <div class="tablinksGraph">
+                                            <button class="m-0 text-primary small" onclick="openTab(event, 'District', 'tabcontentGraph', 'tablinksGraph')">District</button>
+                                        </div>
+
+                                        -->
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+
+                            <!-- Keep the chart at the bottom -->
+                            <div class="wrap"></div>
+
+                            <!-- Charts -->
+                            
+                            <div id="Daily" class="align-bottom tabcontentGraph mt-5 mb-5">
+                                <canvas id="dayChart" width="100%" height="50" class="graph"></canvas>
+                            </div>
+
+                            <div id="Points" class="align-bottom tabcontentGraph mt-5 mb-5">
+                                <canvas id="pointChart" width="100%" height="50" class="graph"></canvas>
+                            </div>
+
+                            <!-- ADD TEAM AND DISTRICT GRAPHS -->
+
+                            <!-- 
+
+                            <div id="Team" class="align-bottom tabcontentGraph mt-5 mb-5">
+                                <canvas id="teamChart" width="100%" height="50" class="graph"></canvas>
+                            </div>
+
+                            <div id="District" class="align-bottom tabcontentGraph mt-5 mb-5">
+                                <canvas id="districtChart" width="100%" height="50" class="graph"></canvas>
+                            </div>
+
+                            -->
+
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div class="card guidesArea shadow mb-4 col-12" style="background-color: #ee0979; color:white">
+
+                    <h3 class="text-center my-3">Guides for you</h3>
+
+                    <div class="my-4 mx-auto">
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuide-how_does_it_work.pdf' %}">Fast Food Guide - How does it work?</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideA-C.pdf' %}">Fast Food Guide - A-C</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideD-M.pdf' %}">Fast Food Guide - D-M</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideN-S.pdf' %}">Fast Food Guide - N-S</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideT-Z.pdf' %}">Fast Food Guide - T-Z</a>
+                    </div>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="col-12 py-4 mt-5 d-flex flex-row px-0">
+                    <div class="mx-auto tab row">
+
+                        <div class="row">
+                        
+                            <div class="tabLinksContent mx-4">
+                                <button id="defaultOpenCard" class="m-0 pb-2 text-primary font-weight-bold h6" onclick="openTab(event, 'uploadsArea', 'card-area', 'tabLinksContent')">Content</button>
+                            </div>
+                            
+                            <div class="tabLinksContent mx-4">
+                                <button class="m-0 pb2 text-primary font-weight-bold h6" onclick="openTab(event, 'Workoutgames', 'card-area', 'tabLinksContent')">Workout Games</button>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div id="uploadsArea" class="card-area card shadow mb-4 col-12" style="background-color: #5ebbe0a6">
+
+                    <div class="row content-header">
+
+                        <div class="dropdown mr-md-3 col-md-4 my-sm-3 mb-md-0 my-3" id="menuwin">
+
+                            <div id="searchContainer" class="ml-3">
+                                <i class="fa fa-search" id="searchIcon" aria-hidden="true"></i>
+                                <input type="text" id="myInput" class="form-control" aria-label="Search" aria-describedby="basic-addon2" onkeyup="searchContent()">
+                            </div>       
+                                
+                            <div id="myDropdown">
+                                <ul class="my-2 dropdown-menu scrollable-menu font-weight-bold w-100" role="menu" aria-labelledby="menu1">                               
+                                </ul>
+                            </div>
+                            
+                        </div>
+
+                        <h3 class="text-center col-md-4 my-3 pr-5" style="color: white">Discover more</h3>
+
+                    </div>
+                    
+                    <div class="my-4 mx-auto col-12 row justify-content-md-center" id="content-area">
+                    
+                    </div>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                    
+                    </div>
+
+                    <div id="myModalMedia" class="modal">
+                        
+                    </div>
+
+                </div>
+
+                <div id="Workoutgames" class="card-area shadow mb-4 px-0 col-12">
+                    <div id="root"></div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+    
+    </div>
+    <!-- End of Main Content -->
+
+    {% include 'footer.html' %}
+
+</div>
+<!-- End of Content Wrapper -->
+
+{% endblock %}
+
+{% block script %}
+
+    <script>!function (f) { function e(e) { for (var r, t, n = e[0], o = e[1], u = e[2], l = 0, a = []; l < n.length; l++)t = n[l], Object.prototype.hasOwnProperty.call(p, t) && p[t] && a.push(p[t][0]), p[t] = 0; for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (f[r] = o[r]); for (s && s(e); a.length;)a.shift()(); return c.push.apply(c, u || []), i() } function i() { for (var e, r = 0; r < c.length; r++) { for (var t = c[r], n = !0, o = 1; o < t.length; o++) { var u = t[o]; 0 !== p[u] && (n = !1) } n && (c.splice(r--, 1), e = l(l.s = t[0])) } return e } var t = {}, p = { 1: 0 }, c = []; function l(e) { if (t[e]) return t[e].exports; var r = t[e] = { i: e, l: !1, exports: {} }; return f[e].call(r.exports, r, r.exports, l), r.l = !0, r.exports } l.m = f, l.c = t, l.d = function (e, r, t) { l.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, l.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, l.t = function (r, e) { if (1 & e && (r = l(r)), 8 & e) return r; if (4 & e && "object" == typeof r && r && r.__esModule) return r; var t = Object.create(null); if (l.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: r }), 2 & e && "string" != typeof r) for (var n in r) l.d(t, n, function (e) { return r[e] }.bind(null, n)); return t }, l.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return l.d(r, "a", r), r }, l.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, l.p = "/"; var r = this.webpackJsonpworkoutgames = this.webpackJsonpworkoutgames || [], n = r.push.bind(r); r.push = e, r = r.slice(); for (var o = 0; o < r.length; o++)e(r[o]); var s = n; i() }([])</script>
+    <script src="{% static 'workoutgames/workoutgames/build/static/js/2.a418033e.chunk.js' %}"></script>
+    <script src="{% static 'workoutgames/workoutgames/build/static/js/main.795a695b.chunk.js' %}"></script>
+    <script src="{% static 'vendor/moment.js/moment.js' %}"></script>
+    <script src="{% static 'js/board.js' %}"></script> 
+    <script src="{% static 'js/content.js' %}"></script>
+    <script src="{% static 'js/workoutGames.js' %}"></script>
+    <script src="{% static 'js/searchContent.js' %}"></script> 
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'vendor/glide/dist/glide.js' %}"></script>
+    
+    
+{% endblock %}

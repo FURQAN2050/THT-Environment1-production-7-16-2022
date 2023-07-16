@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+{% autoescape off %}
+<h1>Hi {{ user.first_name }},</h1>
+<p>We have received your {{ subscription }} payment for The Healthy Teacher.</p>
+<p>Your subscription has been extended until {{ end_date }}</p>
+<p>You can access your account at <a href="http://www.thehealthyteacher.com">thehealthyteacher.com</a></p>
+{% endautoescape %}
+<p>Sincerely,</p>
+<p>The Healthy Teacher team</p>
+</body>
+</html>

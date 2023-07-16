@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+{% autoescape off %}
+<h1>Hi {{ user.first_name }},</h1>
+<p>Thank you for signing up for The Healthy Teacher program!</p>
+<p>Please click on the link to confirm your registration,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}</p>
+{% endautoescape %}
+<p>Sincerely,</p>
+<p>The Healthy Teacher team</p>
+</body>
+</html>

@@ -1,0 +1,186 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %} The Healthy Teacher - Health Information {% endblock %}
+
+{% block content %}
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-5 d-none d-lg-block bg-1"></div>
+        <div class="col-lg-7">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Just so we can provide better content for you</h1>
+            </div>
+            <form class="user" method="post">
+              {% csrf_token %}
+              <div class="form-group row">
+                
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <select class="form-control form-circled-field" name="gender" required id="id_gender">
+                    {% for option in gender %}
+
+                      <option value="{{ option }}">{{ option }}</option>
+
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-sm-6">
+                  <input type="date" name="birthday" class="form-control form-control-user" id="id_birthday">
+
+                </div>
+              </div>
+
+              <div class="form-group row">
+                
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                  <input type="number" name="weight" step="0.1" class="form-control form-control-user" id="id_weight" placeholder="Weight (lb)">
+                </div>
+
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                  <input type="number" name="height" step="0.1" class="form-control form-control-user" id="id_height" placeholder="Height (in)">
+
+                </div>
+
+                <div class="col-sm-6">
+                  <input type="number" name="cholesterol" class="form-control form-control-user" id="id_cholesterol" placeholder="Cholesterol (optional)">
+  
+                </div>
+
+              </div>
+              
+              <label class="ml-3">Blood Pressure (Optional)</label>
+              <div class="form-group row">
+                
+                <div class="col-5 mb-3 mb-sm-0">
+                  <input type="number" name="sysBloodPressure" step="0.1" class="form-control form-control-user" id="id_sysBloodPressure" placeholder="Systolic Blood pressure">
+  
+                </div>
+                <h3>/</h3>
+                <div class="col-5">
+                  <input type="number" name="diasBloodPressure" step="0.1" class="form-control form-control-user" id="id_diasBloodPressure" placeholder="Diastolic Blood pressure">
+  
+                </div>
+              </div>
+              
+              <label class="ml-3">Waistsize (Required)</label>
+              <div class="form-group row">
+                <div class="col-sm-12 mb-3 mb-sm-0">
+                  <input type="number" name="waistsize" step="0.1" class="form-control form-control-user" id="id_waistsize" placeholder="Waistsize (in)">
+  
+                </div>
+                
+              </div>
+
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label class="ml-3" for="isDiabetic">Are you diabetic?</label>
+                  <select class="form-control form-circled-field" name="isDiabetic" required id="id_isDiabetic">
+                    {% for option in diabetic %}
+
+                      <option value="{{ option }}">{{ option }}</option>
+
+                    {% endfor %}
+                  </select>
+  
+                </div>
+                
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label class="ml-3" for="isPrediabetic">Are you prediabetic?</label>
+                  <select class="form-control form-circled-field" name="isPrediabetic" required id="id_isPrediabetic">
+                    {% for option in prediabetic %}
+
+                      <option value="{{ option }}">{{ option }}</option>
+
+                    {% endfor %}
+                  </select>
+  
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label class="ml-3" for="isKeto">Have you been on the Keto Diet within the last two months?</label>
+                  <select class="form-control form-circled-field" name="isKeto" required id="id_isKeto">
+                    {% for option in isKeto %}
+
+                      <option value="{{ option }}">{{ option }}</option>
+
+                    {% endfor %}
+                  </select>
+  
+                </div>
+                
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label class="ml-3" for="lastDiet">Insert the last diet you were on (if any)</label>
+                  <input type="text" name="lastDiet" class="form-control form-control-user" id="id_lastDiet" placeholder="Last Diet">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-12 mb-3 mb-sm-0">
+                  <label class="ml-3" for="nutritionDetails">Are there any other health or nutrition details you think we should know about you?</label>
+                  <input type="text" name="nutritionDetails" class="form-control form-control-user" id="id_nutritionDetails" placeholder="More Info">
+                </div>
+              </div>
+
+              <hr>
+
+              <button type="submit" class="btn btn-primary btn-user btn-block btn-custom-primary">
+                Continue
+              </button>
+              
+            </form>
+
+            {% if form.errors %}
+            
+              <hr>
+              
+              <div class="text-danger">
+
+                {% for error in form.errors %}
+
+                  {% if error == 'password2' %}
+                        <div> Please enter a valid password and make sure both passwords match </div>
+                  {% endif %}
+
+                  {% if error == 'email' %}
+                        <div> Please enter a valid email address </div>
+                  {% endif %}
+
+                  {% if error == 'username' %}
+                        <div> This username is not available </div>
+                  {% endif %}
+
+                  {% if error != 'username' and error != 'email' and error != 'password2' %}
+                    <div>The following fields contain errors:</div>
+                    <div>{{error}}</div>
+                  {% endif %}
+                
+                {% endfor %}
+                    
+              </div>
+              <hr>
+        
+            {% endif %}
+
+            {% for error in form.non_field_errors %}
+                  
+                  {{error}}
+                
+            {%endfor%}
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

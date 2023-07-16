@@ -1,0 +1,44 @@
+Content-Type: multipart/alternative;
+ boundary="===============1769348964472853478=="
+MIME-Version: 1.0
+Subject: Activate your Healthy Teacher Account
+From: info@thehealthyteacher.com
+To: test8@testsprint8.com
+Date: Mon, 28 Dec 2020 19:10:26 -0000
+Message-ID: <160918262645.60770.9075771887597351022@56.1.168.192.in-addr.arpa>
+
+--===============1769348964472853478==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+Hi Test,
+Thank you for signing up for The Healthy Teacher program!
+Please click on the link to confirm your registration,
+http://www.thehealthyteacher.com/accounts/activate/MjE/5mt-6cb7396afac486ea1fc0/
+
+Sincerely,
+The Healthy Teacher team
+--===============1769348964472853478==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+
+<h1>Hi Test,</h1>
+<p>Thank you for signing up for The Healthy Teacher program!</p>
+<p>Please click on the link to confirm your registration,
+http://www.thehealthyteacher.com/accounts/activate/MjE/5mt-6cb7396afac486ea1fc0/</p>
+
+<p>Sincerely,</p>
+<p>The Healthy Teacher team</p>
+</body>
+</html>
+--===============1769348964472853478==--
+
+-------------------------------------------------------------------------------

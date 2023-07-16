@@ -1,0 +1,414 @@
+.btn-custom-primary {
+    color: #fff;
+    background-color: #d62a78;
+    border-color: #d62a78;
+}
+
+.btn-custom-primary:hover {
+    color: #fff;
+    background-color: #e65496;
+    border-color: #e65496
+}
+
+.btn-custom-primary.disabled,.btn-custom-primary:disabled {
+    color: #fff;
+    background-color: #f085b5;
+    border-color: #f085b5
+}
+
+.bg-1 {
+    background: url(http://www.youareworthy.co/wp-content/uploads/2018/09/active-exercise-fit-1401796.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0%;
+}
+
+.bg-2 {
+    background: url(http://www.youareworthy.co/wp-content/uploads/2018/09/barbell-biceps-black-841125.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0%;
+}
+
+.bg-3 {
+    background: url(http://www.youareworthy.co/wp-content/uploads/2018/09/basil-delicious-food-459469.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0%;
+}
+
+.logo {
+    background: url(http://www.youareworthy.co/wp-content/uploads/2018/10/Freedom-Fitness-Logo-blue-1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    padding-top: 35%;
+}
+
+
+
+.circle {
+    border: 5px solid;
+    height: 150px;
+    width: 150px;
+    position: sticky;
+    border-radius: 50%;
+    transition: .2s linear;
+}
+
+.circle:hover {
+    height: 160px;
+    width: 160px;
+ }
+
+ .circle-profile {
+    height: 140px;
+    width: 140px;
+    position: sticky;
+    border-radius: 50%;
+    transition: .2s linear;
+}
+
+.circle-profile:hover {
+    height: 150px;
+    width: 150px;
+ }
+
+.before-image {
+    border: 5px solid;
+    height: 150px;
+    width: 150px;
+    transition: .2s linear;
+}
+
+.before-image:hover {
+    height: 160px;
+    width: 160px;
+ }
+
+.form-circled-field {
+    font-size: .8rem;
+    border-radius: 10rem;
+    height: 3rem;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding-right: 10px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    color: #2db6ff;
+}
+
+.tablinks.active {
+    border-bottom: solid #d62a78;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.text-main-color {
+    color: #ffffff;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.points-display {
+    color: white;
+    font-size: 1rem;
+    
+}
+
+@media (min-width: 72em) {
+  .points-display {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 32em) {
+  .points-display {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 75em) {
+  .points-display {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 92em) {
+  .points-display {
+    font-size: 2rem;
+  }
+}
+
+.ring__circle {
+  transition: stroke-dashoffset 0.35s,  stroke-width 0.75s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.question button {
+    background-color:inherit;
+    float: left;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    padding-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+.questions-yes:hover {
+    background-color: #62be0c;
+    border: solid 1px #62be0c;
+}
+
+.questions-no:hover {
+    background-color: #f7002185;
+    border: solid 1px #f7002185;
+}
+
+.questions-yes.active {
+    background-color: #7ef014;
+    border: solid 1px #7ef014;
+}
+
+.questions-no.active {
+    background-color: #ff0022d1;
+    border: solid 1px #ff0022d1;
+}
+
+.profileform p {
+    
+    font-size: x-large;
+
+}
+
+.profileform input {
+    border: none;
+    border-bottom: 2px solid gray;
+    font-size: larger;
+    border-radius: 0px;
+
+}
+
+.profileform input:focus {
+    outline: none !important;
+}
+
+.profileform select {
+    border: none;
+    font-size: larger;
+    border-radius: 0px;
+}
+
+.profileform label {
+    font-size: small;
+}
+
+.tablinksGraph.active {
+    border-bottom: solid #8fcce7;
+}
+
+.tabcontentGraph {
+    display: none;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.tabLinksContent.active {
+    border-bottom: solid #8fcce7;
+}
+
+.card-area {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.text {
+    font-size: 2;
+}
+
+.content {
+    background-color: #383838;
+    color: white;
+}
+
+.content:hover {
+    color: #c76eaa;
+    cursor: pointer;
+}
+
+.parentThumbnail {
+    height: 15rem;
+    overflow: hidden;
+}
+
+.parentThumbnail:hover .thumbnail,
+.parentThumbnail:focus .thumbnail {
+  transform: scale(1.2);
+}
+
+.thumbnail {
+    transition: all .5s;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+  }
+
+  @media (min-width: 32em) {
+    .modal-content {
+      width: 80%;
+    }
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#myModalMedia {
+    z-index: 2;
+}
+
+#imageContainer {
+  position: relative;
+}
+
+#videoContainer {
+  position: relative;
+}
+
+/* input {
+	background: #ededed no-repeat 9px center;
+	border: solid 1px #eaecf4;
+	padding: 9px 10px 9px 32px;
+	width: 20px;
+	
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	transition: all 1s;
+} */
+
+#myInput {
+	padding-left: 32px;
+	width: 20px;
+	color: #858796;
+	border: solid 1px #00507b;
+	background-color: #f0f3ff;
+	cursor: pointer;
+	transition: all .5s;
+	border-radius: 20px;
+}
+#myInput:hover {
+	background-color: #fff;
+}
+
+#myInput:focus {
+	background-color: #fff;
+	cursor: auto;
+}
+#myInput:-moz-placeholder {
+	color: transparent;
+}
+#myInput::-webkit-input-placeholder {
+	color: transparent;
+}
+
+#searchIcon {
+	position: absolute;
+	z-index: 0;
+	margin-top: 10px;
+	margin-left: 11px;
+	color: #005073
+}
+
+#menuwin {
+	position: relative;
+    display: inline-block;
+}
+
+#searchContainer {
+	position: relative;
+}
+
+#myDropdown {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	min-width: 300px;
+	max-width: 300px;
+	box-shadow: 3px 2px 8px #888888;
+	border-radius: 10px;
+	margin-left: 20px;
+	margin-top: 7px;
+	
+}
+
+#myDropdown li {
+	list-style-type: none;
+	transition: all .3s;
+}
+
+#myDropdown li:hover {
+	background-color: #c7c7c76b;
+	cursor: pointer;
+}
+
+#myDropdown li:hover p {
+	color: #c76eaa;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+#pay form input {
+    width: 10em;
+}

@@ -1,0 +1,113 @@
+{% extends 'layout_main.html' %}
+
+{% load static %}
+
+{% block title %} The Healthy Teacher - Main Board {% endblock %}
+
+{% block content %}
+
+{% include 'navbarGlobal.html' %}
+
+<script>
+    logo = '{% static "img/thehealthyteacher_layover.jpg" %}'
+    video = '{% static "img/Adobe_XD_2019-08-19_16-16-28_mBFaK37.mp4" %}'
+</script>
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+     <!-- Main Content -->
+    <div id="content">
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid px-0 px-sm-4">
+
+            <!-- Card Area -->
+            <div class="col-xl-11 col-md-12 col-sm-12 mx-auto">
+                
+                <div class="card shadow mb-4" style="background-color: #383838">
+                    
+                    <div class="row">
+                    
+                    </div>
+                </div>
+
+                <div class="card guidesArea shadow mb-4 col-12" style="background-color: #ee0979; color:white">
+
+                    <h3 class="text-center my-3">Guides for you</h3>
+
+                    <div class="my-4 mx-auto">
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuide-how_does_it_work.pdf' %}">Fast Food Guide - How does it work?</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideA-C.pdf' %}">Fast Food Guide - A-C</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideD-M.pdf' %}">Fast Food Guide - D-M</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideN-S.pdf' %}">Fast Food Guide - N-S</a>
+                        <a class="col text-white font-weight-bold" href="{% static 'documents/FastFoodGuideT-Z.pdf' %}">Fast Food Guide - T-Z</a>
+                    </div>
+                </div>
+
+                <div id="uploadsArea" class="card-area card shadow mb-4 col-12" style="background-color: #5ebbe0a6">
+
+                    <div class="row content-header">
+
+                        <div class="dropdown mr-md-3 col-md-4 my-sm-3 mb-md-0 my-3" id="menuwin">
+
+                            <div id="searchContainer" class="ml-3">
+                                <i class="fa fa-search" id="searchIcon" aria-hidden="true"></i>
+                                <input type="text" id="myInput" class="form-control" aria-label="Search" aria-describedby="basic-addon2" onkeyup="searchContent()">
+                            </div>       
+                                
+                            <div id="myDropdown">
+                                <ul class="my-2 dropdown-menu scrollable-menu font-weight-bold w-100" role="menu" aria-labelledby="menu1">                               
+                                </ul>
+                            </div>
+                            
+                        </div>
+
+                        <h3 class="text-center col-md-4 my-3 pr-5" style="color: white">Discover more</h3>
+
+                    </div>
+                    
+                    <div class="my-4 mx-auto col-12 row justify-content-md-center" id="content-area">
+                    
+                    </div>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                    
+                    </div>
+
+                    <div id="myModalMedia" class="modal">
+                        
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+    
+    </div>
+    <!-- End of Main Content -->
+
+    {% include 'footer.html' %}
+
+</div>
+<!-- End of Content Wrapper -->
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'vendor/moment.js/moment.js' %}"></script>
+    <script src="{% static 'js/board.js' %}"></script> 
+    <script src="{% static 'js/content.js' %}"></script>
+    <script src="{% static 'js/workoutGames.js' %}"></script>
+    <script src="{% static 'js/searchContent.js' %}"></script>    
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'vendor/glide/dist/glide.js' %}"></script>
+    
+    
+{% endblock %}

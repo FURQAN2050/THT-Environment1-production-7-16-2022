@@ -1,0 +1,36 @@
+{% extends 'layout_main_cms.html' %}
+{% load static %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+{% block title %} Dashboard {% endblock %}
+
+{% block style %}
+<style>
+    .container-plugins {
+        background-color: black;
+    }
+</style>
+{% endblock %}
+
+<ul>
+    {% show_menu 0 100 100 100 %}
+</ul>
+
+{% block content %}
+
+<div class="container-plugins">
+    <div class="mb-1 mt-0">{% placeholder "navbar" %}</div>
+    <div class="mb-sm-3 mt-5" style="margin-top: 100px!important">{% placeholder "area1" %}</div>
+    <div class="d-flex flex-column"><img class="align-self-start" src='{% static "img/linesUp.png" %}' width=330px/></div>
+    <div class="my-0">{% placeholder "area2" %}</div>
+    <div class="my-0">{% placeholder "area3" %}</div>
+    <div class="d-flex flex-column"><img class="align-self-end" src='{% static "img/linesDown.png" %}' width=330px/></div>
+    <div class="mt-0 mb-5">{% placeholder "area4" %}</div>
+    <div class="mb-0 mt-1">{% placeholder "footer" %}</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
