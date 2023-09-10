@@ -6,7 +6,7 @@ from pytz.reference import UTC
 import pytz
 import datetime
 
-from .models import Districts, Teacher, Teams, Subscriptions, School, User
+from .models import Districts, Teacher, Teams, Subscriptions, School, User,EmailTemplate
 
 # Register your models here.
 
@@ -93,10 +93,17 @@ class SchoolAdmin(admin.ModelAdmin):
 
     search_fields = ['name', 'district__district']
 
+class EmailTemplateAdmin(admin.ModelAdmin):
+    list_display = ['template']   
+    search_fields = ['template']
+
+
+# EmailTemplate.getFirstTemplate();
 admin.site.register(Districts, DistrictAdmin)
 admin.site.register(Teams, TeamsAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Subscriptions)
 admin.site.register(School, SchoolAdmin)
+admin.site.register(EmailTemplate, EmailTemplateAdmin)
 
 

@@ -824,6 +824,14 @@ class Teacher(models.Model):
         
         return years
 
+class EmailTemplate(models.Model):
+    template = models.TextField(null=True, default="")
+
+    def getFirstTemplate():
+        print('function called');
+        first_row = EmailTemplate.objects.first()
+        print(first_row.template);
+        return first_row.template;
 
 
 def image_delete_files(**kwargs):
@@ -871,7 +879,6 @@ def extraSaveForImages(**kwargs):
         
         instance.convertImageFieldToJPEG()
         
-
 post_save.connect(extraSaveForSchool, School)
 post_save.connect(extraSaveForImages, ImageProfile)
 post_save.connect(extraSaveForImages, ImageBefore)

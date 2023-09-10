@@ -14,6 +14,7 @@ from .models import Districts
 from .models import Teacher
 from .models import Subscriptions
 from .models import School
+from .models import EmailTemplate
 
 api_key = settings.MAILCHIMP_API_KEY
 server = settings.MAILCHIMP_DATA_CENTER
@@ -71,13 +72,20 @@ class UserCreationForm(UserCreationForm):
 
             mail_subject = "Activate your Healthy Teacher Account"
 
-            messagehtml = render_to_string('acc_active_email.html', {
+            emailTemplate=EmailTemplate.getFirstTemplate();
+            if(emailTemplate):
+                print('email template found')
+                hyperlink='<p>'+'http://'+settings.SITE_HOST+'/accounts/activate/'+urlsafe_base64_encode(force_bytes(user.pk))+'/'+account_activation_token.make_token(user)+'/'+'</p>'
+                messagehtml='<!DOCTYPE html> \n <html lang="en"> \n <head></head> \n <body>'+ emailTemplate +'\n</body> \n'
+                messagehtml=messagehtml.replace('{{ user.first_name }}',user.first_name);
+                messagehtml=messagehtml.replace('{{ hyperlink }}',hyperlink);
+            else:
+                messagehtml = render_to_string(EmailTemplate.getFirstTemplate(), {
                     'user': user,
                     'domain': settings.SITE_HOST,
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                     'token':account_activation_token.make_token(user),
                 })
-
             messageplain = render_to_string('acc_active_email_plain.html', {
                     'user': user,
                     'domain': settings.SITE_HOST,
