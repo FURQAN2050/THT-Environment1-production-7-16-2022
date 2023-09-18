@@ -203,12 +203,12 @@ class User(AbstractUser):
 class Teams(models.Model):
 
     COLORS = {
-        'Green':'#5fba7d',
-        'Red':'#6c2630',
-        'Blue':'#16abfb',
-        'Yellow':'#f7cd19',
-        'Orange':'#ff6300',
-        'Purple':'#ed00ff',
+        'Green':'#00b82e',
+        'Red':'#ef0202',
+        'Blue':'#072bc4',
+        'Yellow':'#fffc07',
+        'Orange':'#ed5500',
+        'Purple':'#7617ff',
         'Pink':'#E91E63',
         'Brown':'#BB8D6F'
     }
