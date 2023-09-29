@@ -37,3 +37,4 @@ static/wagtailsnippets/*
 static/wagtailusers/*
 static/workoutgames/*
 media/*
+venv/*
