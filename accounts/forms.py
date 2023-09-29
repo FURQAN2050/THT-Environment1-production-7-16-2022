@@ -34,6 +34,7 @@ class UserCreationForm(UserCreationForm):
     teacherschool=forms.CharField(max_length=100)
     gradeteach=forms.CharField(max_length=100)
     teacherprofessionlength=forms.CharField(max_length=100)
+    gender=forms.CharField(max_length=100);
 
     class Meta:
         model = User
@@ -48,7 +49,8 @@ class UserCreationForm(UserCreationForm):
             "state",
             "teacherschool",
             "gradeteach",
-            "teacherprofessionlength"
+            "teacherprofessionlength",
+            "gender"
         )
 
     def save(self, commit=True):
@@ -103,11 +105,12 @@ class UserCreationForm(UserCreationForm):
             email.send()
 
         if user.isDistrictManager == False:
-            
+            userGender=self.cleaned_data['gender']
 
+            
             if Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1]).exists():
             
-                teacher = Teacher(user = user, district = Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1])[0])
+                teacher = Teacher(user = user, district = Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1])[0],gender=userGender);
                 teacher.save()
 
             else:
@@ -115,7 +118,7 @@ class UserCreationForm(UserCreationForm):
                 teacherDistrict = self.createIndependentDistrict(self.cleaned_data['email'])
                 school = School(name="Other", district=teacherDistrict)
                 school.save()
-                teacher = Teacher(user = user, district = teacherDistrict)
+                teacher = Teacher(user = user, district = teacherDistrict,gender=userGender)
                 teacher.save()
 
 

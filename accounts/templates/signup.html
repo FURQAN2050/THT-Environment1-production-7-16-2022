@@ -1,148 +1,219 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% load static %} {% block title %} The Healthy
+Teacher - Register {% endblock %} {% block content %}
 
-{% load static %}
-
-{% block title %} The Healthy Teacher - Register {% endblock %}
-
-{% block content %}
-
-  <div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-      <!-- Nested Row within Card Body -->
-      <div class="row">
-        <div class="col-lg-5 d-none d-lg-block bg-1"></div>
-        <div class="col-lg-7">
-          <div class="p-5">
-            <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-            </div>
-            <form class="user" method="post">
-              {% csrf_token %}
-              <div class="form-group row">
-                
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" name="first_name" class="form-control form-control-user" id="id_first_name" placeholder="First Name">
-                  
-                </div>
-                <div class="col-sm-6">
-                  <input type="text" name="last_name" class="form-control form-control-user" id="id_lat_name" placeholder="Last Name">
-
-                </div>
+<div class="card o-hidden border-0 shadow-lg my-5">
+  <div class="card-body p-0">
+    <!-- Nested Row within Card Body -->
+    <div class="row">
+      <div class="col-lg-5 d-none d-lg-block bg-1"></div>
+      <div class="col-lg-7">
+        <div class="p-5">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+          </div>
+          <form class="user" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input
+                  type="text"
+                  name="first_name"
+                  class="form-control form-control-user"
+                  value="{{ form.first_name.value | default_if_none:'' }}"
+                  id="id_first_name"
+                  placeholder="First Name"
+                />
               </div>
-              
-              <div class="form-group row mb-3">
-                  <div class="col mb-3 mb-sm-0">
-                    <input type="text" name="username" class="form-control form-control-user" id="id_username" placeholder="Username">
-                  </div>
-              </div>
-              <div class="form-group row  mb-3">
-                <div class="col mb-3 mb-sm-0">
-                  <input type="email" name="email" class="form-control form-control-user" id="id_email" placeholder="School Email Address">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="password" name="password1" class="form-control form-control-user" id="id_password1" placeholder="Password">
-  
-                </div>
-                <div class="col-sm-6">
-                  <input type="password" name="password2" class="form-control form-control-user" id="id_password2" placeholder="Repeat Password">
-  
-                </div>
-              </div>
-                <!-- Changes -->
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="email" name="personalemail" class="form-control form-control-user" id="id_personalemail" placeholder="Personal/Preferred Email">
-    
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="text" name="state" class="form-control form-control-user" id="id_state" placeholder="State">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" name="teacherschool" class="form-control form-control-user" id="id_teacherschool" placeholder="School">
-    
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="text" name="gradeteach" class="form-control form-control-user" id="id_gradeTeach" placeholder="Grade You Teach">
-                  </div>
-                </div>
-                <div class="form-group row  mb-3">
-                  <div class="col mb-3 mb-sm-0">
-                    <input type="text" name="teacherprofessionlength" class="form-control form-control-user" id="id_teacherprofessionlength" placeholder="Length in Profession">
-                  </div>
-                </div>
-  <!-- Changes end -->
-              <button type="submit" class="btn btn-primary btn-user btn-block btn-custom-primary">
-                Sign up
-              </button>
-              <hr>
-            </form>
-
-            {% if form.errors %}
-              
-              <div class="text-danger">
-
-                {% for error in form.errors %}
-
-                  {% if error == 'password2' %}
-                        <div> Please enter a valid password and make sure both passwords match </div>
-                  {% endif %}
-
-                  {% if error == 'email' %}
-                        <div> Please enter a valid school email address </div>
-                  {% endif %}
-
-                  {% if error == 'username' %}
-                        <div> This username is not available </div>
-                  {% endif %}
-                
-                {% endfor %}
-                
-                {% for error in form.non_field_errors %}
-                  
-                  {{error}}
-                
-                {%endfor%}
-                    
-              </div>
-              <hr>
-        
-            {% endif %}
-
-            <div id="termsModal" class="modal">
-              <div class="modal-content">
-                <div id="termsClose" class="close align-self-end">&times;</div>
-                <div class="elementContainer">
-                  {% include 'terms_and_conditions.html' %}
-                </div>
+              <div class="col-sm-6">
+                <input
+                  type="text"
+                  name="last_name"
+                  class="form-control form-control-user"
+                  value="{{ form.last_name.value | default_if_none:'' }}"
+                  id="id_lat_name"
+                  placeholder="Last Name"
+                />
               </div>
             </div>
 
-            <div id="privacyModal" class="modal">
-                <div class="modal-content">
-                  <div id="privacyClose" class="close align-self-end">&times;</div>
-                  <div class="elementContainer">
-                    {% include 'privacy_policy.html' %}
-                  </div>
-                </div>
+            <div class="form-group row mb-3">
+              <div class="col mb-3 mb-sm-0">
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control form-control-user"
+                  value="{{ form.username.value | default_if_none:'' }}"
+                  id="id_username"
+                  placeholder="Username"
+                />
               </div>
+            </div>
+            <div class="form-group row mb-3"></div>
+            <div class="form-group row">
+              <div class="col mb-3 mb-sm-0">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control form-control-user"
+                  value="{{ form.email.value | default_if_none:'' }}"
+                  id="id_email"
+                  placeholder="School Email Address"
+                />
+              </div>
+              <div class="col-sm-6">
+                <select
+                  class="form-control form-circled-field"
+                  name="gender"
+                  id="gender"
+                >
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input
+                  type="password"
+                  name="password1"
+                  class="form-control form-control-user"
+                  id="id_password1"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="col-sm-6">
+                <input
+                  type="password"
+                  name="password2"
+                  class="form-control form-control-user"
+                  id="id_password2"
+                  placeholder="Repeat Password"
+                />
+              </div>
+            </div>
+            <!-- Changes -->
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input
+                  type="email"
+                  name="personalemail"
+                  class="form-control form-control-user"
+                  ,
+                  value="{{ form.personalemail.value | default_if_none:'' }}"
+                  id="id_personalemail"
+                  placeholder="Personal/Preferred Email"
+                />
+              </div>
+              <div class="col-sm-6">
+                <input
+                  type="text"
+                  name="state"
+                  class="form-control form-control-user"
+                  value="{{ form.state.value | default_if_none:'' }}"
+                  id="id_state"
+                  placeholder="State"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input
+                  type="text"
+                  name="teacherschool"
+                  class="form-control form-control-user"
+                  value="{{ form.teacherschool.value | default_if_none:'' }}"
+                  id="id_teacherschool"
+                  placeholder="School"
+                />
+              </div>
+              <div class="col-sm-6">
+                <input
+                  type="text"
+                  name="gradeteach"
+                  class="form-control form-control-user"
+                  value="{{ form.gradeteach.value | default_if_none:'' }}"
+                  id="id_gradeTeach"
+                  placeholder="Grade You Teach"
+                />
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <div class="col mb-3 mb-sm-0">
+                <input
+                  type="text"
+                  name="teacherprofessionlength"
+                  class="form-control form-control-user"
+                  value="{{ form.teacherprofessionlength.value | default_if_none:'' }}"
+                  id="id_teacherprofessionlength"
+                  placeholder="Length in Profession"
+                />
+              </div>
+            </div>
+            <!-- Changes end -->
+            <button
+              type="submit"
+              class="btn btn-primary btn-user btn-block btn-custom-primary"
+            >
+              Sign up
+            </button>
+            <hr />
+          </form>
 
-            <div class="text-center">
-              <a class="small" href="/accounts/password_reset">Forgot Password?</a>
+          {% if form.errors %}
+
+          <div class="text-danger">
+            {% for error in form.errors %} {% if error == 'password2' %}
+            <div>
+              Please enter a valid password and make sure both passwords match
             </div>
-            <div class="text-center">
-              <a class="small" href="/accounts/login">Already have an account? Login!</a>
+            {% endif %} {% if error == 'email' %}
+            <div>Please enter a valid school email address</div>
+            {% endif %} {% if error == 'username' %}
+            <div>This username is not available</div>
+            {% endif %} {% endfor %} {% for error in form.non_field_errors %}
+            {{error}} {%endfor%}
+          </div>
+          <hr />
+
+          {% endif %}
+
+          <div id="termsModal" class="modal">
+            <div class="modal-content">
+              <div id="termsClose" class="close align-self-end">&times;</div>
+              <div class="elementContainer">
+                {% include 'terms_and_conditions.html' %}
+              </div>
             </div>
-            <div class="text-center small">
-              By signing up you are agreeing to our <a class="small" id="terms" href="#">Terms and conditions</a> and our <a class="small" id="privacy" href="#">Privacy Policy</a>
+          </div>
+
+          <div id="privacyModal" class="modal">
+            <div class="modal-content">
+              <div id="privacyClose" class="close align-self-end">&times;</div>
+              <div class="elementContainer">
+                {% include 'privacy_policy.html' %}
+              </div>
             </div>
+          </div>
+
+          <div class="text-center">
+            <a class="small" href="/accounts/password_reset"
+              >Forgot Password?</a
+            >
+          </div>
+          <div class="text-center">
+            <a class="small" href="/accounts/login"
+              >Already have an account? Login!</a
+            >
+          </div>
+          <div class="text-center small">
+            By signing up you are agreeing to our
+            <a class="small" id="terms" href="#">Terms and conditions</a> and
+            our <a class="small" id="privacy" href="#">Privacy Policy</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock %}
