@@ -15,6 +15,7 @@ from .models import Teacher
 from .models import Subscriptions
 from .models import School
 from .models import EmailTemplate
+import datetime
 
 api_key = settings.MAILCHIMP_API_KEY
 server = settings.MAILCHIMP_DATA_CENTER
@@ -110,7 +111,19 @@ class UserCreationForm(UserCreationForm):
             
             if Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1]).exists():
             
-                teacher = Teacher(user = user, district = Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1])[0],gender=userGender);
+                teacher = Teacher(user = user, 
+                                  district = Districts.objects.filter(emailDomain__icontains=self.cleaned_data['email'].split('@')[1])[0],
+                                  gender=userGender,
+                                  weight=0,
+                                  height=0,
+                                  sysBloodPressure=0,
+                                  diasBloodPressure=0,
+                                  cholesterol=0,
+                                  waistSize=0,
+                                  birthday = datetime.datetime.now().date() - datetime.timedelta(days=8065),
+                                  isPrediabetic = False,
+                                  isDiabetic = False,
+                                  );
                 teacher.save()
 
             else:
@@ -118,7 +131,19 @@ class UserCreationForm(UserCreationForm):
                 teacherDistrict = self.createIndependentDistrict(self.cleaned_data['email'])
                 school = School(name="Other", district=teacherDistrict)
                 school.save()
-                teacher = Teacher(user = user, district = teacherDistrict,gender=userGender)
+                teacher = Teacher(user = user, 
+                                  district = teacherDistrict,
+                                  gender=userGender,
+                                  weight=0,
+                                  height=0,
+                                  cholesterol=0,
+                                  sysBloodPressure=0,
+                                  diasBloodPressure=0,
+                                  waistSize=0,
+                                  birthday = datetime.datetime.now().date() - datetime.timedelta(days=8065),
+                                  isPrediabetic = False,
+                                  isDiabetic = False,
+                                  );
                 teacher.save()
 
 

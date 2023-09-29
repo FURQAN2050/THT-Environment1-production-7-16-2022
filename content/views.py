@@ -30,7 +30,7 @@ class ContentViewPage(generic.CreateView):
 
         # Ensure user only sees this page if it has not completed it before
 
-        if user.teacher.weight == None:
+        if user.teacher.gender == None:
             return redirect('/accounts/healthinfo')
 
         return render(request, 'content.html')
