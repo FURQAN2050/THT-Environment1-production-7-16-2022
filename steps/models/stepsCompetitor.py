@@ -91,19 +91,22 @@ class StepsCompetitor(models.Model):
         Returns: 
             Void
         """
-
+        stepinstanceAlredyExist=False;
         dailyStepsInstance = DailySteps.objects.filter(stepsCompetitor=self, date=date)
 
         if len(dailyStepsInstance) == 0:
             dailyStepsInstance = DailySteps(stepsCompetitor=self, date=date)
         else:
             dailyStepsInstance = dailyStepsInstance[0]
+            stepinstanceAlredyExist=True;
 
         dailyStepsInstance.setSteps(steps)
         dailyStepsInstance.save()
         self.totalSteps = self.__calculateTotalSteps__()
         self.save()
-        if(int(steps)>=10000):
+        print(stepinstanceAlredyExist)
+        if(int(steps)>=10000) and stepinstanceAlredyExist==False:
+            print('going to add more Steps');   
             user.teacher.addPoints(25, timezone.now().date().strftime("%m/%d/%Y"))
 
 
