@@ -206,7 +206,7 @@ class Teams(models.Model):
         'Green':'#00b82e',
         'Red':'#ef0202',
         'Blue':'#072bc4',
-        'Yellow':'#fffc07',
+        'Yellow':'#f6be00',
         'Orange':'#ed5500',
         'Purple':'#7617ff',
         'Pink':'#E91E63',

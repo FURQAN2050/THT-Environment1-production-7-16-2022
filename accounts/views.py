@@ -58,7 +58,7 @@ def check_station(request):
     if user.teacher.team == None:
         return redirect('/accounts/finish/')
 
-    if user.teacher.gender == None:
+    if user.teacher.weight == 0.0:
         return redirect('/accounts/healthinfo')
 
     return None
@@ -276,7 +276,8 @@ class HealthDataEnter(generic.CreateView):
 
         # Ensure user only sees this page if it has not completed it before
 
-        if user.teacher.gender != None:
+        if user.teacher.weight != 0.0:
+            print('in weight condition');
             return redirect('/')
 
         form = HealthDataForm()

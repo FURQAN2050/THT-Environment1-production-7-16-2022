@@ -18,9 +18,11 @@
             </div>
             <form class="user" method="post">
               {% csrf_token %}
+             
               <div class="form-group row">
                 
                 <div class="col-sm-6 mb-3 mb-sm-0">
+                  <label class="ml-3">Birth Gender</label>
                   <select class="form-control form-circled-field" name="gender" required id="id_gender">
                     {% for option in gender %}
 
@@ -31,7 +33,8 @@
                 </div>
 
                 <div class="col-sm-6">
-                  <input type="date" name="birthday" class="form-control form-control-user" id="id_birthday">
+                  <label class="ml-3">Birthday</label>
+                  <input type="date" name="birthday"  placeholder="Birthday" class="form-control form-control-user" id="id_birthday">
 
                 </div>
               </div>
