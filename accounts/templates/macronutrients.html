@@ -23,12 +23,51 @@
                 <div class="col-sm-12 mb-3 mb-sm-0">
                   
                   <label class="ml-3" for="activityLevel">What is your activity level?</label>
-                  <select class="form-control form-circled-field" name="activityLevel" required id="id_activityLevel">
-                    {% for option in activity %}
+                  <select class="form-control form-circled-field" name="activityLevel" required id="id_activityLevel" selected="{{ activityLevel }}">
+                    <!-- {% for option in activity %}
 
                       <option value="{{ option.0 }}">{{ option.1 }}</option>
 
-                    {% endfor %}
+                    {% endfor %} -->
+
+                    {% for option in activity %}
+                              
+                    {% if option.0 == "S" and option.0 == activityLevel %}
+                      <option value="S" selected="selected" title="Choose this if you workout between 1 and 2 times a week, find yourself moving slowly around the classroom, and are mostly seated throughout the day.">{{ option.1 }}</option> 
+                    {% endif %}
+
+                    {% if option.0 == "S" and option.0 != activityLevel %}
+                      <option value="S"  title="Choose this if you workout between 1 and 2 times a week, find yourself moving slowly around the classroom, and are mostly seated throughout the day.">{{ option.1 }}</option> 
+                    {% endif %}
+                    
+                    
+                    {% if option.0 == "LA" and option.0 == activityLevel %}
+                      <option value="LA" selected="selected" title="Choose this if you workout between 2 and 3 times a week and find yourself getting around 5-12K steps a day.">{{ option.1 }}</option>
+                    {% endif %}
+
+                    
+                    {% if option.0 == "LA" and option.0 != activityLevel %}
+                      <option value="LA" title="Choose this if you workout between 2 and 3 times a week and find yourself getting around 5-12K steps a day.">{{ option.1 }}</option>
+                    {% endif %}
+
+
+                    {% if option.0 == "MA" and option.0 == activityLevel %}
+                      <option value="MA" selected="selected" title="Choose this if you workout between 4 and 5 times a week and find yourself getting around 12-20K steps a day.">Moderately Active</option>
+                    {% endif %}
+
+                    {% if option.0 == "MA" and option.0 != activityLevel %}
+                      <option value="MA"  title="Choose this if you workout between 4 and 5 times a week and find yourself getting around 12-20K steps a day.">Moderately Active</option>
+                    {% endif %}
+
+                    {% if option.0 == "A" and option.0 == activityLevel %}
+                      <option value="A"  selected="selected" title="Choose this if you workout 2 times a day and find yourself getting around 15-20K daily steps while also participating in a sport.">Active</option>
+                    {% endif %} 
+
+                    {% if option.0 == "A" and option.0 != activityLevel %}
+                      <option value="A" title="Choose this if you workout 2 times a day and find yourself getting around 15-20K daily steps while also participating in a sport.">Active</option>
+                    {% endif %} 
+
+                  {% endfor %}
                   </select>
                 </div>
               </div>

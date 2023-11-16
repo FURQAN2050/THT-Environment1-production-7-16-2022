@@ -368,7 +368,8 @@ class Teams(APIView):
         if request.POST['action'] == 'individualTeamPoints':
             self.indvidualTeamPoints=models.individualTeamPoints(mySchool = request.user.teacher.school);
             data={
-                "teamPoints":self.indvidualTeamPoints
+                "teamPoints":self.indvidualTeamPoints,
+                 "userTeam":request.user.teacher.team.team
             }
             return Response(data)
 
