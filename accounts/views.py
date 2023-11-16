@@ -391,11 +391,16 @@ class Profile(generic.CreateView):
     TABS = ['Profile', 'HealthInfo', 'Macros']
 
     currentTab = TABS[0]
-
     def get(self, request, currentTab = currentTab):
 
         user = request.user
         check = check_station(request)
+
+        def getTeacherTeamColor(teamName):
+            if teamName=="Yellow":
+                return "#f6be00"
+            else:
+                return teamName
 
         if check != None:
             return check
@@ -433,7 +438,7 @@ class Profile(generic.CreateView):
             'profile_picture' : profile_picture,
             'district' : user.teacher.district.district,
             'team' : user.teacher.team.team,
-            'color' : user.teacher.team.color,
+            'color' : getTeacherTeamColor(user.teacher.team.color),
             'gender' : HealthDataForm.GENDER_R[0] if user.teacher.gender == 'M' else HealthDataForm.GENDER_R[1],
             'genderOptions' : HealthDataForm.GENDER_R,
             'birthday' : user.teacher.get_birthday,
