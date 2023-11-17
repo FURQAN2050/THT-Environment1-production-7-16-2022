@@ -17,6 +17,7 @@ class DailySteps(models.Model):
     stepsCompetitor = models.ForeignKey('StepsCompetitor', on_delete=models.CASCADE)
     dailySteps = models.IntegerField()
     date = models.DateField(default=timezone.now().date())
+    addExtraPoints=models.BooleanField(default=True)
 
     def setSteps(self, steps):
 
@@ -37,5 +38,22 @@ class DailySteps(models.Model):
         self.dailySteps = steps
 
         print(self.dailySteps)
+
+    def setExtraPointsBool(self, extraPointsBool):
+
+        """
+        Set number of steps
+
+        Parameters:
+            steps(Integer)
+
+        Returns:
+            Void
+
+        """
+
+        self.addExtraPoints = extraPointsBool
+
+        print(self.addExtraPoints)
 
 

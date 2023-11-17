@@ -91,24 +91,37 @@ class StepsCompetitor(models.Model):
         Returns: 
             Void
         """
-        stepinstanceAlredyExist=False;
+        stepInstanceAlreadyExist=False;
         dailyStepsInstance = DailySteps.objects.filter(stepsCompetitor=self, date=date)
 
         if len(dailyStepsInstance) == 0:
             dailyStepsInstance = DailySteps(stepsCompetitor=self, date=date)
         else:
             dailyStepsInstance = dailyStepsInstance[0]
-            stepinstanceAlredyExist=True;
+            print(dailyStepsInstance.dailySteps);
+            stepInstanceAlreadyExist=True;
 
+        
+        print(stepInstanceAlreadyExist)
+
+        if stepInstanceAlreadyExist==True:
+            if dailyStepsInstance.addExtraPoints==True:
+                if not (int(dailyStepsInstance.dailySteps)>=10000):
+                    if (int(steps)>=10000):
+                        print('adding points on the basis of first Condition');   
+                        user.teacher.addPoints(25, timezone.now().date().strftime("%m/%d/%Y"))
+                        dailyStepsInstance.setExtraPointsBool(False)
+        
+        if stepInstanceAlreadyExist==False:
+            if(int(steps)>=10000):
+                print('adding points on the basis of second Condition');   
+                user.teacher.addPoints(25, timezone.now().date().strftime("%m/%d/%Y"))
+                dailyStepsInstance.setExtraPointsBool(False)
+                
         dailyStepsInstance.setSteps(steps)
         dailyStepsInstance.save()
         self.totalSteps = self.__calculateTotalSteps__()
         self.save()
-        print(stepinstanceAlredyExist)
-        if(int(steps)>=10000) and stepinstanceAlredyExist==False:
-            print('going to add more Steps');   
-            user.teacher.addPoints(25, timezone.now().date().strftime("%m/%d/%Y"))
-
 
     def getPlaceCurrent(self):
 

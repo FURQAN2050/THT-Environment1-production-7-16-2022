@@ -11,6 +11,7 @@ from rest_framework import status
 from django.utils import html
 from django.utils import timezone
 from django.http import HttpResponseBadRequest
+from django.utils.dateparse import parse_datetime
 
 import json
 import datetime
@@ -155,6 +156,23 @@ class StepsAPI(APIView):
         """
 
         date = datetime.datetime.strptime(dateString, "%Y-%m-%d").date()
+
+        return date
+    
+    def __convertISOStringToDate__(self, dateString):
+
+        """
+        Converts a date in string format to Date object
+
+        Parameters: 
+            dateString(String): Date to convert in format yyyy/mm/dd
+        
+        Returns: 
+            Date
+        """
+
+            # date = datetime.datetime.strptime(dateString, "%Y-%m-%d").date()
+        date= parse_datetime(dateString)
 
         return date
 

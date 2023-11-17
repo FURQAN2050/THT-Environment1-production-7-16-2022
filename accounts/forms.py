@@ -78,10 +78,11 @@ class UserCreationForm(UserCreationForm):
             emailTemplate=EmailTemplate.getFirstTemplate();
             if(emailTemplate):
                 print('email template found')
-                hyperlink='<p>'+'http://'+settings.SITE_HOST+'/accounts/activate/'+urlsafe_base64_encode(force_bytes(user.pk))+'/'+account_activation_token.make_token(user)+'/'+'</p>'
+                hyperlink='http://'+settings.SITE_HOST+'/accounts/activate/'+urlsafe_base64_encode(force_bytes(user.pk))+'/'+account_activation_token.make_token(user)+'/'
                 messagehtml='<!DOCTYPE html> \n <html lang="en"> \n <head></head> \n <body>'+ emailTemplate +'\n</body> \n'
                 messagehtml=messagehtml.replace('{{ user.first_name }}',user.first_name);
                 messagehtml=messagehtml.replace('{{ hyperlink }}',hyperlink);
+                print(messagehtml);
             else:
                 messagehtml = render_to_string(EmailTemplate.getFirstTemplate(), {
                     'user': user,
