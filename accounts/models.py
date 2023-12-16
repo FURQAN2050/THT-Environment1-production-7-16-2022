@@ -834,6 +834,12 @@ class EmailTemplate(models.Model):
         return first_row.template;
 
 
+class TeacherWeight(models.Model):
+
+    user = models.CharField(max_length=50)
+    weight = models.CharField(max_length=50)
+    created_on=models.DateTimeField(auto_now_add=True) 
+
 def image_delete_files(**kwargs):
 
     """

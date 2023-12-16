@@ -3,12 +3,14 @@ from decimal import Decimal
 
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, response
 from django.contrib.auth import login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash, password_validation
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.views import LoginView
+from datetime import datetime, timedelta ,date
+from django.utils import timezone
 
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -23,6 +25,7 @@ from django.db.models import Q
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
+import json
 
 
 from paypal.standard.forms import PayPalPaymentsForm
@@ -33,7 +36,7 @@ from .forms import UserCreationForm, SelectSchoolForm, FinishSignUpForm, EditMyP
 from .tokens import account_activation_token
 
 from . import models
-from .models import User, Teacher, ImageProfile, ImageBefore, ImageCurrent
+from .models import TeacherWeight, User, Teacher, ImageProfile, ImageBefore, ImageCurrent
 from .models import Teams as TeamsModel
 
 
@@ -683,6 +686,50 @@ class ProcessPayment(APIView):
 
 class LoginUser(LoginView):
     template_name = 'login.html'  # your template
+
+
+class addTeacherWeight(APIView):
+    def post(self,request):
+        success=False;
+        print(request.user);
+        existing=TeacherWeight.objects.filter(created_on__gte=datetime.now() - timedelta(days=1)).filter(user=request.user.id).exists()
+        print(existing);
+        print(date.today())
+        print(timezone.now())
+        print(datetime.now() - timedelta(days=1))
+        if(existing):
+            print(existing);
+            existingWeight=TeacherWeight.objects.filter(created_on__gte=datetime.now() - timedelta(days=1)).filter(user=request.user.id);
+            existingWeight.update(weight=request.POST["weight"]);
+            success=True
+        else:
+            print('in else');
+            TeacherWeight.objects.create(
+                weight=request.POST["weight"],
+                user=request.user.id,
+            )
+            success=True
+        return Response({"success":success})
+
+class getTeacherWeights(APIView):
+    def post(self,request):
+        success=False;
+        print(request.user);
+        print(request.POST["startdate"]);
+        # payload = json.loads(request.body)
+        # new Date().toISOString()
+        records=TeacherWeight.objects.filter(created_on__gte=request.POST["startdate"],created_on__lte=request.POST["enddate"]).filter(user=request.user.id).order_by("created_on").values()
+        success=True
+        return Response({"success":success ,"data":records})
+
+class getTeacherCurrentWeight(APIView):
+    def post(self,request):
+        success=False;
+        print(request.user.id);
+        records=TeacherWeight.objects.filter(created_on__gte=datetime.now() - timedelta(days=1)).filter(user=request.user.id).values()
+        success=True;
+        return Response({"success":success ,"data":records})
+
 
 
 @csrf_exempt

@@ -52,7 +52,7 @@ class StepsAPI(APIView):
                 )
 
             elif request.POST['action'] == 'getStepsDate':
-                date = self.__convertStringToDate__(request.POST['date'])
+                date = self.__convertISOStringToDate__(request.POST['date'])
                 return Response(
                     self.getStepsDate(
                         user,
@@ -61,8 +61,8 @@ class StepsAPI(APIView):
                 )
 
             elif request.POST['action'] == 'getStepsDateRange':
-                dateStart = self.__convertStringToDate__(request.POST['dateStart'])
-                dateEnd = self.__convertStringToDate__(request.POST['dateEnd'])
+                dateStart = self.__convertISOStringToDate__(request.POST['dateStart'])
+                dateEnd = self.__convertISOStringToDate__(request.POST['dateEnd'])
                 return Response(
                     self.getStepsDateRange(
                         user,
